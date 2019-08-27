@@ -1,34 +1,21 @@
 const BASE_URL = '/api';
 
-export function getMinerals() {  
-    const url = `${BASE_URL}/minerals`;
+export function getList() {  
+    const url = `${BASE_URL}/tasks`;
 
     return fetch(url)
         .then(res => res.json());
 
 }
 
-
-export function getMineral(name) {  
-    const url = `${URL}/${name}`;
-    return fetch(url)
-        .then(response => response.json());
-}
-
-export function addMineral(mineral) {
-    const url = `${URL}/${mineral}`;
+export function addTask(task) {
+    const url = `${URL}/${task}`;
     return fetch(url, {
         method: 'POST',
         headers: {
-            'Content-Type': 'applimineralion/json',
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify(mineral)
+        body: JSON.stringify(task)
     })
-        .then(response => response.json());
-}
-
-export function getTypes() {
-    const url = `${URL}/types`;
-    return fetch(url)
         .then(response => response.json());
 }

@@ -1,11 +1,50 @@
 /* 
 fonts:
-font-family: 'Gamja Flower', cursive;
-font-family: 'Spicy Rice', cursive;
-font-family: 'Jacques Francois Shadow', cursive;
+body: 'Gamja Flower', cursive;
+display: 'Jacques Francois Shadow', cursive;
 
 colors:
 brown black #261A1C
 pastel spring green #E6F9BB
 
 */
+
+html {
+    background-color: #E6F9BB;
+    color: #261A1C;
+    font-family: 'Gamja Flower', cursive;
+    font-size: 2em;
+}
+
+header, footer {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: #261A1C;
+    color: #E6F9BB;
+    font-family: 'Jacques Francois Shadow', cursive;
+    padding: .5em;
+}
+
+
+li {
+    display: flex;
+    flex-direction: row;
+    padding: 1em;
+    border-bottom: #261A1C solid medium;
+}
+
+.finished {
+    text-decoration: line-through;
+}
+
+p, button {
+    text-align: center;
+    margin: .5em auto;
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
