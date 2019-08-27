@@ -8,14 +8,10 @@ export function getList() {
 
 }
 
-export function addTask(task) {
-    const url = `${URL}/${task}`;
+export function addTask(tasks) {
+    const url = `${URL}/${tasks}`;
     return fetch(url, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(task)
-    })
-        .then(response => response.json());
+        body: JSON.stringify(tasks)
+    });
 }

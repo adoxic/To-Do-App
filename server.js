@@ -25,9 +25,9 @@ app.use(express.json());
 app.get('/api/tasks', (req, res) => {
     client.query(`
         SELECT
-            name,
-            text,
-        FROM tasks
+            task,
+            completed
+        FROM tasks;
     `)
         .then(result => {
             res.json(result.rows);
@@ -39,7 +39,23 @@ app.get('/api/tasks', (req, res) => {
         });
 });
 
-
+app.post('/api/tasks', (req, res) => {
+    const task = req.body;
+    client.query(`
+        INSERT INTO tasks (task, completed)
+        VALUES($1, $2);
+        RETURNING *;
+    `,
+    [task.task, task.completed])
+        .then(result => {
+            res.json(result.rows[0]);
+        })
+        .catch(err => {
+            res.status(500).json({
+                error: err.message || err
+            });
+        }); 
+});
 
 app.listen(PORT, () => {
     console.log('server running on PORT', PORT);
