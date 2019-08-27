@@ -2,30 +2,32 @@ import Component from '../Component.js';
 import { addTask } from '../services/list-api.js';
 
 class AddTask extends Component {
-    onRender(form) {
-
+    onRender(dom) {
+        const form = dom.querySelector('form');
+        const input = dom.querySelector('input[name=new-task]');
+    
         form.addEventListener('submit', event => {
             event.preventDefault();
-
-            const formData = new FormData(form);
-
+            
             const task = {
-                task: formData.get('#new-task'),
+                task: input.value,
                 completed: false            
             };
 
-            addTask(task)
-                .catch(err => {
-                    return ('cat not saved :(', err);
-                });
+            addTask(task);
+                // .catch(err => {
+                //    // console.log('task not saved :(', err);
+                // });
         });
     }
     renderHTML() {
         return /*html*/`
+        <section>
         <form class="add">
-            <input type="text" id="new-task">
+            <input type="text" name="new-task">
             <button>Add New Task</button>
         </form>
+        </section>
         `;
     }
 }

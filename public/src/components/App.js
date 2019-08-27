@@ -24,8 +24,8 @@ class App extends Component {
             <div>
                 <header class="task-manage">
                     <h1>ADD</h1>
-                    <form class="add">
-                    </form>
+                    <div class="add">
+                    </div>
                 </header>
                 <main>
                 </main>

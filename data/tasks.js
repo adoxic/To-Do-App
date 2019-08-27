@@ -9,6 +9,6 @@ module.exports = [
     },
     {
         task: 'Take over the world',
-        completed: false
+        completed: true
     },
 ];

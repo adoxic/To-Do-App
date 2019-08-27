@@ -18,7 +18,7 @@ client.connect();
 const app = express();
 const PORT = process.env.PORT;
 app.use(cors());
-app.use(morgan('dev')); // http logging
+app.use(morgan('dev')); 
 app.use(express.static('public'));
 app.use(express.json()); 
 
@@ -30,6 +30,7 @@ app.get('/api/tasks', (req, res) => {
         FROM tasks;
     `)
         .then(result => {
+            console.log(result.rows);
             res.json(result.rows);
         })
         .catch(err => {
@@ -41,10 +42,10 @@ app.get('/api/tasks', (req, res) => {
 
 app.post('/api/tasks', (req, res) => {
     const task = req.body;
+
     client.query(`
         INSERT INTO tasks (task, completed)
         VALUES($1, $2);
-        RETURNING *;
     `,
     [task.task, task.completed])
         .then(result => {
