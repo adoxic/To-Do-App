@@ -18,6 +18,13 @@ class App extends Component {
             .then(tasks => {
                 list.update({ tasks });
             });
+
+        window.addEventListener('click', () => {
+            getList()
+                .then(tasks => {
+                    list.update({ tasks });
+                });
+        });
     }
     renderHTML() {
         return /*html*/`
