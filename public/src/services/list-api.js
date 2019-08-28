@@ -1,4 +1,13 @@
+import store from './store.js';
+
 const BASE_URL = '/api';
+
+const token = store.getToken();
+if(!token && location.pathname !== '/auth.html') {
+    const searchParams = new URLSearchParams();
+    searchParams.set('redirect', location.pathname);
+    location = `auth.html?${searchParams.toString()}`;
+}
 
 
 function fetchWithError(url, options) {
@@ -42,5 +51,27 @@ export function putTask(task) {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(task)
+    });
+}
+
+export function signUp(user) {
+    const url = `${BASE_URL}/auth/signup`;
+    return fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user)        
+    });
+}
+
+export function signIn(credentials) {
+    const url = `${BASE_URL}/auth/signin`;
+    return fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(credentials)        
     });
 }
