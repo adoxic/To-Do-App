@@ -33,3 +33,14 @@ export function addTask(tasks) {
         body: JSON.stringify(tasks)
     });
 }
+
+export function putTask(task) {
+    const url = `${BASE_URL}/tasks`;
+    return fetchWithError(url, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(task)
+    });
+}

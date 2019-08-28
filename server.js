@@ -30,7 +30,6 @@ app.get('/api/tasks', (req, res) => {
         FROM tasks;
     `)
         .then(result => {
-            console.log(result.rows);
             res.json(result.rows);
         })
         .catch(err => {
@@ -38,6 +37,26 @@ app.get('/api/tasks', (req, res) => {
                 error: err.message || err
             });
         });
+});
+
+app.put('/api/tasks', (req, res) => {
+    const task = req.body;
+    console.log(task);
+    client.query(`
+        UPDATE tasks
+        SET completed = true
+        WHERE task = $1;
+    `,
+    [task.task])
+        .then(result => {
+            console.log(result.rows[0]);
+            res.json(result.rows[0]);
+        })
+        .catch(err => {
+            res.status(500).json({
+                error: err.message || err
+            });
+        }); 
 });
 
 app.post('/api/tasks', (req, res) => {
