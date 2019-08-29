@@ -1,9 +1,8 @@
-
 const test = QUnit.test;
 
-QUnit.module('Render Pokemon');
+QUnit.module('Render');
 
-test('renders header', assert => {
+test('renders', assert => {
 
 
     // act
