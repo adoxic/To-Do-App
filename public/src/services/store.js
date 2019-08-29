@@ -5,7 +5,6 @@ export default {
         return localStorage.getItem(TOKEN_KEY);
     },
     setToken(token) {
-        console.log(token);
         return localStorage.setItem(TOKEN_KEY, token);
     },
     hasToken() {

@@ -6,7 +6,6 @@ import { signUp as userSignUp, signIn as userSignIn } from '../services/list-api
 import store from '../services/store.js';
 
 function success(user) {
-    console.log('success', user.token);
     store.setToken(user.token);
     const searchParams = new URLSearchParams(location.search);
     location = searchParams.get('redirect') || './index.html';
@@ -20,14 +19,12 @@ class AuthApp extends Component {
         const signUp = new SignUp({
             onSignUp: newUser => {
                 errors.textContent = '';
-                console.log('new user', newUser);
 
                 return userSignUp(newUser)
                     .then(user => {
                         success(user);
                     })
                     .catch(err => {
-                        console.log(err);
                         errors.textContent = err;
                     });
             }
