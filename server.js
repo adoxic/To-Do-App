@@ -25,6 +25,7 @@ const authRoutes = createAuthRoutes({
         ).then(result => result.rows[0]);
     },
     insertUser(user, hash) {
+        console.log(hash);
         return client.query(`
             INSERT into users (email, hash, display_name)
             VALUES ($1, $2, $3)
@@ -71,7 +72,8 @@ app.put('/api/tasks', (req, res) => {
     client.query(`
         UPDATE tasks
         SET completed = true
-        WHERE task = $1;
+        WHERE task = $1
+        RETURNING *;
     `,
     [task.task])
         .then(result => {
@@ -90,10 +92,12 @@ app.post('/api/tasks', (req, res) => {
 
     client.query(`
         INSERT INTO tasks (task, completed)
-        VALUES($1, $2);
+        VALUES($1, $2)
+        RETURNING *;
     `,
     [task.task, task.completed])
         .then(result => {
+            console.log('result', result);
             res.json(result.rows[0]);
         })
         .catch(err => {

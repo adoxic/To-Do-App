@@ -11,6 +11,11 @@ if(!token && location.pathname !== '/auth.html') {
 
 
 function fetchWithError(url, options) {
+    if(token) {
+        options = options || {};
+        options.headers = options.headers || {};
+        options.headers.Authorization = token;
+    }
     return fetch(url, options)
         .then(response => {
             if(response.ok) {
@@ -27,8 +32,7 @@ function fetchWithError(url, options) {
 export function getList() {  
     const url = `${BASE_URL}/tasks`;
 
-    return fetch(url)
-        .then(res => res.json());
+    return fetchWithError(url);
 
 }
 
@@ -56,7 +60,7 @@ export function putTask(task) {
 
 export function signUp(user) {
     const url = `${BASE_URL}/auth/signup`;
-    return fetch(url, {
+    return fetchWithError(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -67,7 +71,7 @@ export function signUp(user) {
 
 export function signIn(credentials) {
     const url = `${BASE_URL}/auth/signin`;
-    return fetch(url, {
+    return fetchWithError(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
