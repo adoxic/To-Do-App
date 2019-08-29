@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cd public && npm i esm jsdom && npx qunit test/index.js",
     "start": "node server.js",
     "start:watch": "nodemon server.js",
     "create-tables": "node data/create-tables.js",
