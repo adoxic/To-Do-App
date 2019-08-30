@@ -1,34 +1,81 @@
+import store from './store.js';
+
 const BASE_URL = '/api';
 
-export function getMinerals() {  
-    const url = `${BASE_URL}/minerals`;
-
-    return fetch(url)
-        .then(res => res.json());
-
+const token = store.getToken();
+if(!token && location.pathname !== '/auth.html') {
+    const searchParams = new URLSearchParams();
+    searchParams.set('redirect', location.pathname);
+    location = `auth.html?${searchParams.toString()}`;
 }
 
 
-export function getMineral(name) {  
-    const url = `${URL}/${name}`;
-    return fetch(url)
-        .then(response => response.json());
+function fetchWithError(url, options) {
+    if(token) {
+        options = options || {};
+        options.headers = options.headers || {};
+        options.headers.Authorization = token;
+    }
+    return fetch(url, options)
+        .then(response => {
+            if(response.ok) {
+                return response.json();
+            }
+            else {
+                return response.json().then(json => {
+                    throw json.error;
+                });
+            }
+        });
 }
 
-export function addMineral(mineral) {
-    const url = `${URL}/${mineral}`;
-    return fetch(url, {
+export function getList() {  
+    const url = `${BASE_URL}/tasks`;
+
+    return fetchWithError(url);
+
+}
+
+export function addTask(tasks) {
+    const url = `${BASE_URL}/tasks`;
+    return fetchWithError(url, {
         method: 'POST',
         headers: {
-            'Content-Type': 'applimineralion/json',
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify(mineral)
-    })
-        .then(response => response.json());
+        body: JSON.stringify(tasks)
+    });
 }
 
-export function getTypes() {
-    const url = `${URL}/types`;
-    return fetch(url)
-        .then(response => response.json());
+export function putTask(task) {
+    const url = `${BASE_URL}/tasks`;
+    return fetchWithError(url, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(task)
+    });
+}
+
+export function signUp(user) {
+    const url = `${BASE_URL}/auth/signup`;
+    return fetchWithError(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user)        
+    });
+}
+
+export function signIn(credentials) {
+    const url = `${BASE_URL}/auth/signin`;
+    return fetchWithError(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(credentials)        
+    });
 }

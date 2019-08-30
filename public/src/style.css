@@ -1,11 +1,81 @@
 /* 
 fonts:
-font-family: 'Gamja Flower', cursive;
-font-family: 'Spicy Rice', cursive;
-font-family: 'Jacques Francois Shadow', cursive;
+body: 'Gamja Flower', cursive;
+display: 'Jacques Francois Shadow', cursive;
 
 colors:
 brown black #261A1C
 pastel spring green #E6F9BB
 
 */
+
+html {
+    background-color: #E6F9BB;
+    color: #261A1C;
+    font-family: 'Gamja Flower', cursive;
+    font-size: 2em;
+}
+
+header, footer {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: #261A1C;
+    color: #E6F9BB;
+    font-family: 'Jacques Francois Shadow', cursive;
+    padding: .5em;
+}
+
+
+li {
+    display: flex;
+    flex-direction: row;
+    padding: 1em;
+    border-bottom: #261A1C solid medium;
+}
+
+.finished {
+    text-decoration: line-through;
+    text-decoration-color: red;
+}
+
+li button {
+    background-color: #261A1C;
+    color: #E6F9BB;
+    border: none;
+    text-decoration-color: #E6F9BB;
+    font-family: 'Gamja Flower', cursive;
+    font-size: .8em;
+    border-radius: .2em;
+}
+
+header button {
+    background-color: #E6F9BB;
+    color: #261A1C;
+    border: none;
+    text-decoration-color: #E6F9BB;
+    font-family: 'Gamja Flower', cursive;
+    font-size: .7em;
+    border-radius: .2em;
+}
+
+header button:hover {
+    -webkit-box-shadow: 1px 5px 5px 1px rgba(230, 249, 187, 0.5); 
+    box-shadow: 1px 5px 5px 1px rgba(230, 249, 187, 0.5);
+}
+
+li button:hover {
+    -webkit-box-shadow: 1px 5px 5px 1px rgba(0,0,0,0.75); 
+    box-shadow: 1px 5px 5px 1px rgba(0,0,0,0.75);
+}
+
+p, button {
+    text-align: center;
+    margin: .5em auto;
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
