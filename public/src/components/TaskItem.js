@@ -6,7 +6,6 @@ class TaskItem extends Component {
         const button = dom.querySelector('button');
         button.addEventListener('click', () => {
             const taskText = button.value;
-            console.log(taskText)
             const selectedObject = {
                 task: taskText,
                 completed: false
@@ -28,7 +27,6 @@ class TaskItem extends Component {
 }
 
 function ifDone(task) {
-
     if(task.completed) {
         return 'Done !';
     } else {
