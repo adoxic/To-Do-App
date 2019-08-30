@@ -9,6 +9,6 @@ test('renders', assert => {
     const actual = true;
     const expected = true;
     // assert
-    assert.deepEqual(actual, expected);
+    assert.equal(actual, expected);
 });
 
