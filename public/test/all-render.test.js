@@ -1,25 +1,13 @@
-import Header from '../src/components/Header.js';
-
 const test = QUnit.test;
 
-QUnit.module('Render Component HTML');
+QUnit.module('test');
 
-test('renders header', assert => {
+test('test', assert => {
     
-    const expected = /*html*/`    <header class="header">
-    <h1>Welcome to the Mineral Library</h1>
-    <nav class="nav">
-        <p>Home</p>
-        <p>Library</p>
-        <p>Submit Mineral</p>
-    </nav>
-</header>`;
+    const expected = true;
 
-    // act
-    
-    const header = new Header;
-    const html = header.renderHTML();
-    // assert
-    assert.htmlEqual(html, expected);
+    const html = true;
+  
+    assert.equal(html, expected);
 });
 
